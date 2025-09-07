@@ -102,7 +102,7 @@ Rejecting invalid or missing input
 
 Handling cases where a student or event doesn’t exist
 
-###📂 Project Layout
+📂 Project Layout
 ```bash
 campus-event-management/
 ├── server.js         # Entry point
