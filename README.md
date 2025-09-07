@@ -6,7 +6,7 @@ The aim of this prototype is to show how a complete event workflow can be tracke
 
 ---
 
-
+## 🚀 Getting Started
 
 ### Setup Instructions
 1. Clone the repository or download the project files.  
@@ -14,16 +14,20 @@ The aim of this prototype is to show how a complete event workflow can be tracke
 
 ```bash
 npm install
+```
+
 Start the server:
 
-bash
-Copy code
+```bash
+
 npm start
+```
+
 For development with auto-reload, use:
 
-bash
-Copy code
+```bash
 npm run dev
+```
 The server runs by default at: http://localhost:3000
 
 📊 Database Overview
@@ -77,7 +81,7 @@ GET /reports/top-students → Top 3 students by attendance
 GET /reports/overview → Quick stats across events and students
 
 🧪 Seed Data
-To make testing easier, the system comes with some default data:
+The system includes default sample data for quick testing:
 
 A few colleges (e.g., Engineering, Computer Science, Business)
 
@@ -85,10 +89,10 @@ Students linked to those colleges
 
 Sample events
 
-Some prefilled registrations, attendance records, and feedback
+Prefilled registrations, attendance records, and feedback
 
-🛡 Error Handling
-The API takes care of common issues such as:
+### Error Handling
+The API handles common issues such as:
 
 Preventing duplicate registrations
 
@@ -98,9 +102,8 @@ Rejecting invalid or missing input
 
 Handling cases where a student or event doesn’t exist
 
-📂 Project Layout
-bash
-Copy code
+###📂 Project Layout
+```bash
 campus-event-management/
 ├── server.js         # Entry point
 ├── db.js             # Database connection and schema setup
@@ -113,6 +116,8 @@ campus-event-management/
 ├── package.json
 └── README.md
 
+```
+
 🔧 Tech Stack
 Express.js → API framework
 
@@ -123,15 +128,15 @@ CORS → Allow cross-origin requests
 Nodemon → For development auto-reload
 
 📝 Workflow Example
-Admin creates an event.
+Admin creates an event
 
-Students register for the event.
+Students register for the event
 
-On event day, attendance is recorded.
+On event day, attendance is recorded
 
-After the event, students give feedback.
+After the event, students give feedback
 
-Reports are generated to analyze participation and event popularity.
+Reports are generated to analyze participation and event popularity
 
 🎯 Key Features
 Simple event creation and management
@@ -147,4 +152,3 @@ Reports on popularity, participation, and top students
 Database consistency using foreign keys
 
 Preloaded sample data for quick testing
-
