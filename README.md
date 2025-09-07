@@ -30,6 +30,7 @@ npm run dev
 ```
 The server runs by default at: http://localhost:3000
 
+
 📊 Database Overview
 The database uses SQLite and is created automatically when the project starts.
 It contains the following tables:
@@ -47,6 +48,7 @@ Attendance → attendance status (present/absent)
 Feedback → feedback ratings for each event (1–5 scale)
 
 Foreign keys are enabled to keep relationships valid, and duplicate registrations are prevented.
+
 
 🔗 API Routes
 Events
@@ -80,6 +82,8 @@ GET /reports/top-students → Top 3 students by attendance
 
 GET /reports/overview → Quick stats across events and students
 
+
+
 🧪 Seed Data
 The system includes default sample data for quick testing:
 
@@ -102,6 +106,7 @@ Rejecting invalid or missing input
 
 Handling cases where a student or event doesn’t exist
 
+
 📂 Project Layout
 ```bash
 campus-event-management/
@@ -118,6 +123,7 @@ campus-event-management/
 
 ```
 
+
 🔧 Tech Stack
 Express.js → API framework
 
@@ -126,6 +132,8 @@ SQLite3 → Database engine
 CORS → Allow cross-origin requests
 
 Nodemon → For development auto-reload
+
+
 
 📝 Workflow Example
 Admin creates an event
@@ -137,6 +145,8 @@ On event day, attendance is recorded
 After the event, students give feedback
 
 Reports are generated to analyze participation and event popularity
+
+
 
 🎯 Key Features
 Simple event creation and management
