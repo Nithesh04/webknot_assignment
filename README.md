@@ -82,7 +82,8 @@ GET /reports/top-students → Top 3 students by attendance
 
 GET /reports/overview → Quick stats across events and students
 
-
+<br>
+<br>
 
 🧪 Seed Data
 The system includes default sample data for quick testing:
@@ -94,7 +95,8 @@ Students linked to those colleges
 Sample events
 
 Prefilled registrations, attendance records, and feedback
-
+<br>
+<br>
 ### Error Handling
 The API handles common issues such as:
 
@@ -134,7 +136,8 @@ CORS → Allow cross-origin requests
 Nodemon → For development auto-reload
 
 
-
+<br>
+<br>
 📝 Workflow Example
 Admin creates an event
 
@@ -146,7 +149,8 @@ After the event, students give feedback
 
 Reports are generated to analyze participation and event popularity
 
-
+<br>
+<br>
 
 🎯 Key Features
 Simple event creation and management
