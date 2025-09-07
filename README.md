@@ -1,195 +1,150 @@
 # Campus Event Management Platform
 
-A Node.js + Express + SQLite backend for managing campus events, student registrations, attendance, and feedback.
+This project is a backend system built with **Node.js**, **Express**, and **SQLite**.  
+It is designed to handle campus events, where admins can create events and students can register, mark attendance, and share feedback.  
+The aim of this prototype is to show how a complete event workflow can be tracked and reported in a simple but structured way.
 
-## 🚀 Quick Start
+---
 
-### Installation
+
+
+### Setup Instructions
+1. Clone the repository or download the project files.  
+2. Install all required dependencies:
 
 ```bash
-# Install dependencies
 npm install
+Start the server:
 
-# Start the server
+bash
+Copy code
 npm start
+For development with auto-reload, use:
 
-# For development with auto-reload
+bash
+Copy code
 npm run dev
-```
+The server runs by default at: http://localhost:3000
 
-The server will start on `http://localhost:3000`
+📊 Database Overview
+The database uses SQLite and is created automatically when the project starts.
+It contains the following tables:
 
-## 📊 Database Schema
+Colleges → stores college information
 
-The platform uses SQLite with the following entities:
+Students → basic student details with a link to their college
 
-- **Colleges** → college_id, name
-- **Students** → student_id, name, email, college_id
-- **Events** → event_id, title, type, date, college_id
-- **Registrations** → reg_id, student_id, event_id
-- **Attendance** → att_id, student_id, event_id, status (present/absent)
-- **Feedback** → feedback_id, student_id, event_id, rating (1-5)
+Events → event details such as title, type, date, and college
 
-## 🔗 API Endpoints
+Registrations → which student registered for which event
 
-### Event Management
+Attendance → attendance status (present/absent)
 
-#### Create Event
-```http
-POST /events
-Content-Type: application/json
+Feedback → feedback ratings for each event (1–5 scale)
 
-{
-  "title": "Hackathon 2025",
-  "type": "Workshop",
-  "date": "2025-09-15",
-  "college_id": 1
-}
-```
+Foreign keys are enabled to keep relationships valid, and duplicate registrations are prevented.
 
-#### List All Events
-```http
-GET /events
-```
+🔗 API Routes
+Events
+POST /events → Create a new event
 
-#### Get Specific Event
-```http
-GET /events/:id
-```
+GET /events → View all events
 
-### Student Registration
+GET /events/:id → Get details of a specific event
 
-#### Register for Event
-```http
-POST /events/:id/register
-Content-Type: application/json
+Registrations
+POST /events/:id/register → Register a student to an event
 
-{
-  "student_id": 1
-}
-```
+GET /events/:id/registrations → List all students registered for an event
 
-#### Get Event Registrations
-```http
-GET /events/:id/registrations
-```
+Attendance
+POST /events/:id/attendance → Mark a student’s attendance
 
-### Attendance
+GET /events/:id/attendance → View attendance list of an event
 
-#### Mark Attendance
-```http
-POST /events/:id/attendance
-Content-Type: application/json
+Feedback
+POST /events/:id/feedback → Submit feedback (rating 1–5)
 
-{
-  "student_id": 1,
-  "status": "present"
-}
-```
+GET /events/:id/feedback → Get feedback for an event
 
-#### Get Event Attendance
-```http
-GET /events/:id/attendance
-```
+Reports
+GET /reports/popularity → Events sorted by registration count
 
-### Feedback
+GET /reports/student/:id → Participation details of a student
 
-#### Submit Feedback
-```http
-POST /events/:id/feedback
-Content-Type: application/json
+GET /reports/top-students → Top 3 students by attendance
 
-{
-  "student_id": 1,
-  "rating": 5
-}
-```
+GET /reports/overview → Quick stats across events and students
 
-#### Get Event Feedback
-```http
-GET /events/:id/feedback
-```
+🧪 Seed Data
+To make testing easier, the system comes with some default data:
 
-### Reports
+A few colleges (e.g., Engineering, Computer Science, Business)
 
-#### Event Popularity
-```http
-GET /reports/popularity
-```
+Students linked to those colleges
 
-#### Student Participation
-```http
-GET /reports/student/:id
-```
+Sample events
 
-#### Top Active Students
-```http
-GET /reports/top-students
-```
+Some prefilled registrations, attendance records, and feedback
 
-#### Overview Statistics
-```http
-GET /reports/overview
-```
+🛡 Error Handling
+The API takes care of common issues such as:
 
-## 🧪 Sample Data
+Preventing duplicate registrations
 
-The database is automatically seeded with sample data including:
+Validating feedback ratings (must be between 1–5)
 
-- 3 Colleges (Computer Science, Engineering, Business)
-- 7 Students across different colleges
-- 5 Sample events
-- Sample registrations, attendance, and feedback
+Rejecting invalid or missing input
 
-## 🛡️ Error Handling
+Handling cases where a student or event doesn’t exist
 
-The API includes comprehensive error handling for:
-
-- Duplicate registrations
-- Invalid ratings (must be 1-5)
-- Missing required fields
-- Non-existent students/events
-- Database constraint violations
-
-## 📁 Project Structure
-
-```
+📂 Project Layout
+bash
+Copy code
 campus-event-management/
-├── server.js           # Main entry point
-├── db.js              # SQLite connection & schema
+├── server.js         # Entry point
+├── db.js             # Database connection and schema setup
 ├── routes/
-│   ├── events.js      # Event management
-│   ├── register.js    # Student registration
-│   ├── attendance.js  # Attendance tracking
-│   ├── feedback.js    # Feedback collection
-│   └── reports.js     # Analytics & reports
+│   ├── events.js     # Event management routes
+│   ├── register.js   # Student registration
+│   ├── attendance.js # Attendance tracking
+│   ├── feedback.js   # Feedback submission
+│   └── reports.js    # Report generation
 ├── package.json
 └── README.md
-```
 
-## 🔧 Development
+🔧 Tech Stack
+Express.js → API framework
 
-The project uses:
-- **Express.js** for the web framework
-- **SQLite3** for the database
-- **CORS** for cross-origin requests
-- **Nodemon** for development auto-reload
+SQLite3 → Database engine
 
-## 📝 Example Usage Flow
+CORS → Allow cross-origin requests
 
-1. **Create Event**: Admin creates a new event
-2. **Student Registration**: Students register for events
-3. **Mark Attendance**: Attendance is marked on event day
-4. **Collect Feedback**: Students submit feedback after events
-5. **Generate Reports**: View analytics and participation data
+Nodemon → For development auto-reload
 
-## 🎯 Features
+📝 Workflow Example
+Admin creates an event.
 
-- ✅ Event creation and management
-- ✅ Student registration with duplicate prevention
-- ✅ Attendance tracking (present/absent)
-- ✅ Feedback collection (1-5 rating)
-- ✅ Comprehensive reporting system
-- ✅ Foreign key constraints
-- ✅ Input validation and error handling
-- ✅ Sample data seeding
+Students register for the event.
+
+On event day, attendance is recorded.
+
+After the event, students give feedback.
+
+Reports are generated to analyze participation and event popularity.
+
+🎯 Key Features
+Simple event creation and management
+
+Student registration with duplicate check
+
+Attendance tracking system
+
+Feedback ratings for events
+
+Reports on popularity, participation, and top students
+
+Database consistency using foreign keys
+
+Preloaded sample data for quick testing
+
